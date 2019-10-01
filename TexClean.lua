@@ -25,3 +25,16 @@ function clean(dossier,boolPDF)
     end
 end
 
+function cleanRec(dossier,boolPDF)
+    if dossier:sub(#dossier,#dossier) ~= "/" then
+        dossier = dossier.."/"
+    end
+    clean(dossier,boolPDF)
+    local files = ls(dossier)
+    for i=1,#files do
+        if isDir(dossier..files[i]) then
+            cleanRec(dossier..files[i],boolPDF)
+        end
+    end
+end
+
