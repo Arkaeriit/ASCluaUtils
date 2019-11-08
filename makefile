@@ -1,5 +1,5 @@
 
-all : texclean makeclean
+all : texclean makeclean grepDir
 
 texclean : TexClean.o gestionFS.o TexClean.luac
 	gcc TexClean.o gestionFS.o -llua -lm -ldl -o texclean
@@ -19,6 +19,15 @@ makeClean.luac : makeClean.lua
 makeClean.o : makeClean.c
 	gcc -c makeClean.c -Wall -o makeClean.o
 
+grepDir : grepDir.o gestionFS.o grepDir.luac
+	gcc grepDir.o gestionFS.o -llua -lm -ldl -o grepDir
+
+grepDir.luac : grepDir.lua
+	luac -o grepDir.luac grepDir.lua
+
+grepDir.o : grepDir.c
+	gcc -c grepDir.c -Wall -o grepDir.o
+
 gestionFS.o : gestionFS.c gestionFS.h
 	gcc -c gestionFS.c -Wall -o gestionFS.o
 
@@ -27,8 +36,9 @@ clean :
 	rm -f *.luac
 	rm -f texclean
 	rm -f makeclean
+	rm -f grepDir
 
-install : installtexclean installmakeclean
+install : installtexclean installmakeclean installgrepdir
 
 installtexclean : 
 	mkdir -p /usr/local/share/texclean
@@ -40,14 +50,16 @@ installmakeclean :
 	cp -f makeclean /usr/local/bin
 	cp -f makeClean.luac /usr/local/share/makeclean
 
+installgrepdir : 
+	mkdir -p /usr/local/share/grepDir
+	cp -f grepDir /usr/local/bin
+	cp -f grepDir.luac /usr/local/share/grepDir
+
 uninstall :
 	rm -Rf /usr/local/share/texclean
 	rm -f /usr/local/bin/texclean
 	rm -Rf /usr/local/share/makeclean
 	rm -f /usr/local/bin/makeclean
-
-
-
-
-
+	rm -Rf /usr/local/share/grepDir
+	rm -f /usr/local/bin/grepDir
 
