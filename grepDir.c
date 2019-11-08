@@ -43,7 +43,10 @@ int main(int argc,char** argv){
         lua_close(L);
         return 1;
     }
-    lua_call(L,3,0);
+    lua_call(L,3,1);
+    int ret = lua_toboolean(L,-1);
+    if(!ret)
+        fprintf(stdout,"No matches for the expression.\n");
     lua_close(L);
     return 0;
 }
