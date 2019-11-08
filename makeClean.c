@@ -12,7 +12,7 @@ int main(int argc,char** argv){
     gFS_include(L);
 
     //On charge les fichiers
-#if devel == 1
+#if devel == 0
     fprintf(stdout,"Mode de developpement...\n");
     luaL_dofile(L,"makeClean.lua"); //dev
 #else

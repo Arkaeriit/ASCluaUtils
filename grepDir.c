@@ -16,7 +16,7 @@ int main(int argc,char** argv){
     fprintf(stdout,"Mode de developpement...\n");
     luaL_dofile(L,"grepDir.lua"); //dev
 #else
-    luaL_dofile(L,"/usr/local/share/texclean/grepDir.luac");
+    luaL_dofile(L,"/usr/local/share/grepDir/grepDir.luac");
 #endif
     //Mode normal 
     lua_getglobal(L,"grepDir");
