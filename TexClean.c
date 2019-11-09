@@ -16,7 +16,7 @@ int main(int argc,char** argv){
     fprintf(stdout,"Mode de developpement...\n");
     luaL_dofile(L,"TexClean.lua"); //dev
 #else
-    luaL_dofile(L,"/usr/local/share/texclean/TexClean.luac");
+    luaL_dofile(L,"/usr/local/share/ASCluaUtils/TexClean.luac");
 #endif
     //Mode normal 
     if(argc == 2 && !strcmp(*(argv+1),"all")){ //On efface les pdf du dossier courant

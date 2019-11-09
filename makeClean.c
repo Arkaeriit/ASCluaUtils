@@ -16,7 +16,7 @@ int main(int argc,char** argv){
     fprintf(stdout,"Mode de developpement...\n");
     luaL_dofile(L,"makeClean.lua"); //dev
 #else
-    luaL_dofile(L,"/usr/local/share/makeclean/makeClean.luac");
+    luaL_dofile(L,"/usr/local/share/ASCluaUtils/makeClean.luac");
 #endif
     //Mode normal 
     if(argc == 1){ //On make clean le dossier courant

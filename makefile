@@ -41,25 +41,23 @@ clean :
 install : installtexclean installmakeclean installgrepdir
 
 installtexclean : 
-	mkdir -p /usr/local/share/texclean
+	mkdir -p /usr/local/share/ASCluaUtils
 	cp -f texclean /usr/local/bin
-	cp -f TexClean.luac /usr/local/share/texclean
+	cp -f TexClean.luac /usr/local/share/ASCluaUtils
 
 installmakeclean : 
-	mkdir -p /usr/local/share/makeclean
+	mkdir -p /usr/local/share/ASCluaUtils
 	cp -f makeclean /usr/local/bin
-	cp -f makeClean.luac /usr/local/share/makeclean
+	cp -f makeClean.luac /usr/local/share/ASCluaUtils
 
 installgrepdir : 
-	mkdir -p /usr/local/share/grepDir
+	mkdir -p /usr/local/share/ASCluaUtils
 	cp -f grepDir /usr/local/bin
-	cp -f grepDir.luac /usr/local/share/grepDir
+	cp -f grepDir.luac /usr/local/share/ASCluaUtils
 
 uninstall :
-	rm -Rf /usr/local/share/texclean
+	rm -Rf /usr/local/share/ASCluaUtils
 	rm -f /usr/local/bin/texclean
-	rm -Rf /usr/local/share/makeclean
 	rm -f /usr/local/bin/makeclean
-	rm -Rf /usr/local/share/grepDir
 	rm -f /usr/local/bin/grepDir
 
