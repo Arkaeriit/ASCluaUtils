@@ -52,6 +52,6 @@ int main(int argc,char** argv){
 }
 
 void manuel(void){
-    fprintf(stderr,"This software is used to search a regular expression in all the file of a directory and print them nicely.\n    Usage : grepDir [expression] <option> <directory>\n    If no directory is given the search will be made in the curent directory.\nAvailable options:\n    recursive : search recursively\n");
+    fprintf(stderr,"This software is used to search a regular expression in all the file of a directory and print them nicely.\n    Usage : grepDir [expression] <option> <directory>\n    If no directory is given the search will be made in the curent directory.\nAvailable options:\n    rec : search recursively\n");
 }
 

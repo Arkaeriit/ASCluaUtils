@@ -36,6 +36,6 @@ int main(int argc,char** argv){
 }
 
 void manuel(void){
-    fprintf(stderr,"This software is used to recursively execute the make clean function in a directoy.\n    Usage: makeclean <directory>\nIf no directoy is given the current directory will be targeted.\n");
+    fprintf(stderr,"This software is used to recursively execute the make clean function in a directory.\n    Usage: makeclean <directory>\nIf no directory is given the current directory will be targeted.\n");
 }
 
