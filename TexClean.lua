@@ -25,6 +25,22 @@ function clean(dossier,boolPDF)
     end
 end
 
+function make(dossier)
+     if dossier:sub(#dossier,#dossier) ~= "/" then
+        dossier = dossier.."/"
+    end
+    local files = ls(dossier)
+    for i=1,#files do
+        local extention = files[i]:sub(#files[i] - 3,#files[i])
+        local nomCmp = files[i]
+        if extention == ".tex" then
+            print("pdflatex -output-directory="..dossier.." "..dossier..nomCmp)
+            --os.execute("pdflatex -output-directory="..dossier.." "..dossier..nomCmp)
+            os.execute("cd "..dossier.." && pdflatex "..dossier..nomCmp)
+        end
+    end
+end
+
 function cleanRec(dossier,boolPDF)
     if dossier:sub(#dossier,#dossier) ~= "/" then
         dossier = dossier.."/"
@@ -34,6 +50,19 @@ function cleanRec(dossier,boolPDF)
     for i=1,#files do
         if isDir(dossier..files[i]) then
             cleanRec(dossier..files[i],boolPDF)
+        end
+    end
+end
+
+function makeRec(dossier)
+    if dossier:sub(#dossier,#dossier) ~= "/" then
+        dossier = dossier.."/"
+    end
+    make(dossier)
+    local files = ls(dossier)
+    for i=1,#files do
+        if isDir(dossier..files[i]) then
+            makeRec(dossier..files[i])
         end
     end
 end
