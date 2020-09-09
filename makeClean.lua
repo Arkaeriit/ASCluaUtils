@@ -1,9 +1,9 @@
+local gFS = require("gestionFS")
 
 function clean(dossier)
     local f = io.popen("cd "..antiSlashing(dossier).." && pwd","r") --dossier de départ du travail
     local dossierBase = f:read()
     f:close()
-
     cleanRec(dossierBase)
 end
 
@@ -13,10 +13,9 @@ function cleanRec(dossier)
         dossier = dossier.."/"
     end
     os.execute("cd "..antiSlashing(dossier).." && make clean &> /dev/null")
-    
-    local files = ls(dossier)
+    local files = gFS.ls(dossier)
     for i=1,#files do
-        if isDir(dossier..files[i]) and files[i] ~= ".mozilla" and files[i] ~= ".mozilla/" and files[i] ~= ".Trash" and files[i] ~= ".Trash/" then
+        if gFS.isDir(dossier..files[i]) and files[i] ~= ".mozilla" and files[i] ~= ".mozilla/" and files[i] ~= ".Trash" and files[i] ~= ".Trash/" then
             cleanRec(dossier..files[i])
         end
     end

@@ -1,26 +1,29 @@
+FLAGS = -Wall -Werror
+LUA = -llua -lm -ldl
+GFS = -lgestionFS
 
 all : texclean makeclean
 
-texclean : TexClean.o gestionFS.o TexClean.luac
-	gcc TexClean.o gestionFS.o -llua -lm -ldl -o texclean
+texclean : TexClean.o gFS_plus.o TexClean.luac
+	gcc TexClean.o gFS_plus.o $(GFS) $(LUA) -o texclean
 
 TexClean.luac : TexClean.lua
 	luac -o TexClean.luac TexClean.lua
 
 TexClean.o : TexClean.c
-	gcc -c TexClean.c -Wall -o TexClean.o
+	gcc -c TexClean.c $(FLAGS) -o TexClean.o
 
-makeclean : makeClean.o gestionFS.o makeClean.luac
-	gcc makeClean.o gestionFS.o -llua -lm -ldl -o makeclean
+makeclean : makeClean.o gFS_plus.o makeClean.luac
+	gcc makeClean.o gFS_plus.o $(LUA) $(GFS) -o makeclean
 
 makeClean.luac : makeClean.lua
 	luac -o makeClean.luac makeClean.lua
 
 makeClean.o : makeClean.c
-	gcc -c makeClean.c -Wall -o makeClean.o
+	gcc -c makeClean.c $(FLAGS) -o makeClean.o
 
-gestionFS.o : gestionFS.c gestionFS.h
-	gcc -c gestionFS.c -Wall -o gestionFS.o
+gFS_plus.o : gFS_plus.c gFS_plus.h
+	gcc -c gFS_plus.c $(FLAGS) -o gFS_plus.o
 
 clean :
 	rm -f *.o

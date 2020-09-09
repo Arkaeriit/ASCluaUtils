@@ -1,10 +1,15 @@
 # ASCluaUtils
 This is a collection of small utilities made using the gestionFS.c library I created for ASCcrypte.
 
-You can install all of them at once by doing :
-``bash
+## Instalation
+To install this suite of utilities you need the library ASCgestionFS, available here: https://github.com/Arkaeriit/ASCgestionFS.
+
+When the library is installed, this just use: 
+```bash
 make && sudo make install
 ```
+This will install all the utilities at once. If you are only interested by one, reffer to the following sections.
+
 ## makeclean
 This software is used to recursively execute the make clean function in a directory.
 Usage: `makeclean <directory>`

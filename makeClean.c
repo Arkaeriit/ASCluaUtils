@@ -1,6 +1,10 @@
-#include "gestionFS.h"
+#include <lua.h>
+#include <lualib.h>
+#include <lauxlib.h>
+#include <string.h>
+#include "gFS_plus.h"
 
-#define devel 1
+#define devel 0
 
 void manuel(void);
 
@@ -9,10 +13,9 @@ int main(int argc,char** argv){
     lua_State* L;
     L = luaL_newstate();
     luaL_openlibs(L);
-    gFS_include(L);
 
     //On charge les fichiers
-#if devel == 0
+#if devel == 1
     fprintf(stdout,"Mode de developpement...\n");
     luaL_dofile(L,"makeClean.lua"); //dev
 #else

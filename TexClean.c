@@ -1,4 +1,8 @@
-﻿#include "gestionFS.h"
+﻿#include <lua.h>
+#include <lualib.h>
+#include <lauxlib.h>
+#include <string.h>
+#include "gFS_plus.h"
 
 #define devel 0
 
@@ -9,7 +13,6 @@ int main(int argc,char** argv){
     lua_State* L;
     L = luaL_newstate();
     luaL_openlibs(L);
-    gFS_include(L);
 
     //On charge les fichiers
 #if devel == 1

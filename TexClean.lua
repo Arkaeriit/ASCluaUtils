@@ -1,3 +1,4 @@
+local gFS = require("gestionFS")
 
 function clean(dossier,boolPDF)
     local deletable = {".aux",".toc",".log",".out",".synctex.gz"} --à compléter
@@ -5,7 +6,7 @@ function clean(dossier,boolPDF)
         dossier = dossier.."/"
     end
 
-    local files = ls(dossier)
+    local files = gFS.ls(dossier)
     local texLS = {}
     for i=1,#files do
         local extention = files[i]:sub(#files[i] - 3,#files[i])
@@ -16,11 +17,11 @@ function clean(dossier,boolPDF)
     end
     for i=1,#texLS do
         for j=1,#deletable do
-            rm(dossier..texLS[i]..deletable[j])
+            gFS.rm(dossier..texLS[i]..deletable[j])
         end
         if boolPDF then
-            rm(dossier..texLS[i]..".ps")
-            rm(dossier..texLS[i]..".pdf")
+            gFS.rm(dossier..texLS[i]..".ps")
+            gFS.rm(dossier..texLS[i]..".pdf")
         end
     end
 end
@@ -29,7 +30,7 @@ function make(dossier)
      if dossier:sub(#dossier,#dossier) ~= "/" then
         dossier = dossier.."/"
     end
-    local files = ls(dossier)
+    local files = gFS.ls(dossier)
     for i=1,#files do
         local extention = files[i]:sub(#files[i] - 3,#files[i])
         local nomCmp = files[i]
@@ -46,9 +47,9 @@ function cleanRec(dossier,boolPDF)
         dossier = dossier.."/"
     end
     clean(dossier,boolPDF)
-    local files = ls(dossier)
+    local files = gFS.ls(dossier)
     for i=1,#files do
-        if isDir(dossier..files[i]) then
+        if gFS.isDir(dossier..files[i]) then
             cleanRec(dossier..files[i],boolPDF)
         end
     end
@@ -59,7 +60,7 @@ function makeRec(dossier)
         dossier = dossier.."/"
     end
     make(dossier)
-    local files = ls(dossier)
+    local files = gFS.ls(dossier)
     for i=1,#files do
         if isDir(dossier..files[i]) then
             makeRec(dossier..files[i])
